@@ -22,7 +22,7 @@ const userRouter = require("./routers/user.js");
 
 const Listing = require("./models/listing.js");
 
-const dbUrl = process.env.ATLISTDB;
+const dbUrl = process.env.MONGO_URL || "mongodb://localhost:27017/airbnb-clone";
 
 mongoose
   .connect(dbUrl)
