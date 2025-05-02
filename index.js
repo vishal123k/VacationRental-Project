@@ -25,17 +25,13 @@ const Listing = require("./models/listing.js");
 const dbUrl = process.env.ATLISTDB;
 
 mongoose
-  .connect(dbUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(dbUrl)
   .then(() => {
     console.log("Connected to DB");
   })
   .catch((err) => {
     console.error("DB connection error:", err);
   });
-
 
 // View engine and middleware setup
 app.engine("ejs", ejsMate);
