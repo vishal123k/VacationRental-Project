@@ -22,16 +22,20 @@ const userRouter = require("./routers/user.js");
 
 const Listing = require("./models/listing.js");
 
-const dbUrl = process.env.ATLISTDB || "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.ATLISTDB;
 
 mongoose
-  .connect(dbUrl)
+  .connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to DB");
   })
   .catch((err) => {
     console.error("DB connection error:", err);
   });
+
 
 // View engine and middleware setup
 app.engine("ejs", ejsMate);
@@ -87,7 +91,7 @@ app.use((req, res, next) => {
 // Routes
 app.get("/", async (req, res) => {
   const allListings = await Listing.find({});
-  res.render("listings/index.ejs", { allListings });
+  res.render("listings/index.ejs", { allListings });
 });
 app.use("/listings", listingRouter);
 app.use("/listings/:id/review", reviewRouter);
@@ -97,7 +101,6 @@ app.use("/", userRouter);
 app.all("*", (req, res, next) => {
   next(new expressError(404, "Page Not Found"));
 });
-
 
 // Global error handler
 app.use((err, req, res, next) => {
@@ -111,6 +114,3 @@ app.listen(8080, () => {
 });
 
 module.exports = app; // Export the app for testing purposes
-
-
-
