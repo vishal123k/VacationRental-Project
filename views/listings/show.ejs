@@ -1,0 +1,97 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <script>
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const listing = <%- JSON.stringify(listing) %>;
+  </script>
+
+  <div class="container mt-5">
+    <!-- Listing Title -->
+    <div class="text-center mb-4">
+      <h2 class="fw-bold"><%= listing.title %></h2>
+    </div>
+
+    <!-- Listing Card -->
+    <div class="card mx-auto shadow-sm p-0 listing-card" style="max-width: 720px;">
+      <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing Image" style="max-height: 400px; object-fit: cover;">
+      <div class="card-body">
+        <p class="text-muted mb-1">Owned by: <strong><%= listing.owner.username %></strong></p>
+        <p class="mb-2"><%= listing.description %></p>
+        <p class="mb-1 fw-semibold">Price: ₹ <%= listing.price.toLocaleString("en-IN") %></p>
+        <p class="mb-1">Location: <%= listing.location %></p>
+        <p class="mb-0">Country: <%= listing.country %></p>
+      </div>
+    </div>
+
+    <!-- Owner Controls -->
+    <% if (currUser && listing.owner._id.equals(currUser._id)) { %>
+      <div class="d-flex justify-content-center gap-3 my-4">
+        <a href="/listings/<%= listing._id %>/edit" class="btn btn-outline-primary px-4">Edit</a>
+        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+          <button class="btn btn-outline-danger px-4">Delete</button>
+        </form>
+      </div>
+    <% } %>
+
+    <!-- Review Section -->
+    <div class="mt-5">
+      <hr>
+      <% if (currUser) { %>
+        <h4 class="mb-3">Leave a Review</h4>
+        <form action="/listings/<%= listing.id %>/review" method="POST" class="needs-validation" novalidate>
+          <!-- Rating -->
+          <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            <fieldset class="starability-slot">
+              <legend></legend>
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+              <% for (let i = 1; i <= 5; i++) { %>
+                <input type="radio" id="first-rate<%= i %>" name="review[rating]" value="<%= i %>" />
+                <label for="first-rate<%= i %>" title="<%= ['Terrible', 'Not good', 'Average', 'Very good', 'Amazing'][i-1] %>"><%= i %> star<%= i > 1 ? 's' : '' %></label>
+              <% } %>
+            </fieldset>
+          </div>
+
+          <!-- Comment -->
+          <div class="mb-3">
+            <label for="comment" class="form-label">Comment</label>
+            <textarea name="review[comment]" id="comment" class="form-control" rows="4" required></textarea>
+            <div class="invalid-feedback">Please enter a comment.</div>
+          </div>
+
+          <button class="btn btn-dark">Submit Review</button>
+        </form>
+      <% } %>
+
+      <!-- All Reviews -->
+      <% if (listing.review.length > 0) { %>
+        <hr class="my-4">
+        <h4 class="mb-3">All Reviews</h4>
+        <div class="row">
+          <% listing.review.forEach(review => { %>
+            <div class="col-md-5 mb-3 me-3">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h5 class="card-title">@<%= review.author.username %></h5>
+                  <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
+                  <p class="card-text"><%= review.comment %></p>
+                  <form method="POST" action="/listings/<%= listing._id %>/review/<%= review._id %>?_method=DELETE">
+                    <button class="btn btn-sm btn-outline-danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Map -->
+    <div class="mt-5">
+      <h4 class="mb-3">Where you'll be</h4>
+      <div id="map" style="height: 400px;" class="rounded shadow-sm"></div>
+    </div>
+  </div>
+
+  <script src="/js/map.js"></script>
+</body>

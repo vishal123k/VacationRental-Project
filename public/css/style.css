@@ -1,0 +1,365 @@
+/* Base */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    color: #333;
+}
+.container {
+    flex: 1;
+}
+
+/* Navbar */
+.navbar {
+    height: 5rem;
+    background-color: white !important;
+}
+.fa-space-awesome{
+    color: yellow;
+    font-size: 2rem;
+}
+.nav-link1{
+    color: #222222 !important;
+    border-radius: 5px !important;
+    text-decoration: none !important;
+    padding: 5px 0 5px 0;
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+    background-color: rgb(162, 221, 210);
+}
+.nav-link1:hover{
+    background-color: #94b5d5;
+}
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info-links,.f-info-socials,.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-links{
+    padding-right: 10px;
+}
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+.f-info-socials a{
+    color: rgb(53, 50, 50)
+}
+.f-info-socials i:hover{
+    font-size: 1.4rem;
+    color: red;
+}
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: lightcyan;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+    background-color: rgb(210, 215, 218) !important;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+.card-text p {
+    font-weight: 400;
+}
+.listings-link{
+    text-decoration: none;
+}
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.3;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand Icon */
+.fa-space-awesome {
+    color: #ffc107;
+    font-size: 2rem;
+}
+
+/* Navigation Button */
+.nav-link1 {
+    color: #222 !important;
+    border: 1px solid #767671 !important;
+    border-radius: 0.5rem !important;
+    padding: 6px 14px;
+    background-color: #a2ddd2;
+    text-decoration: none !important;
+    display: flex;
+    justify-content: center;
+    margin-left: 0.5rem;
+    transition: all 0.3s ease-in-out;
+}
+.nav-link1:hover {
+    background-color: #94b5d5;
+    color: #000;
+}
+
+/* Footer */
+.f-info {
+    text-align: center;
+    background-color: #e0f7fa;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+.f-info-links a {
+    color: #333;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+.f-info-socials i {
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
+    transition: transform 0.2s, color 0.2s;
+}
+.f-info-socials a {
+    color: #353232;
+}
+.f-info-socials i:hover {
+    transform: scale(1.2);
+    color: red;
+}
+
+/* Cards */
+.listing-card {
+    background-color: #d2d7da !important;
+    border: 1px solid #ccc !important;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.card-img-top {
+    width: 100% !important;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0 !important;
+}
+.card-body {
+    padding: 1rem;
+}
+.card-text b {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+.card-text .tax-info {
+    font-size: 0.85rem;
+    color: #888;
+}
+.card-img-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.card-img-overlay:hover {
+    opacity: 0.3;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Listing Link */
+.listings-link {
+    text-decoration: none;
+}
+
+/* Buttons */
+.add-btn,
+.edit-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s;
+}
+.add-btn:hover,
+.edit-btn:hover {
+    background-color: #d6363e !important;
+}
+
+/* Show Page */
+.show-img {
+    height: 30vh;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+.btns {
+    display: flex;
+    gap: 1rem;
+}
+.show-card {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Map */
+#map {
+    height: 400px;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .tax-info {
+        display: none !important;
+    }
+
+    .navbar {
+        height: auto;
+        padding: 0.5rem;
+    }
+
+    .nav-link1 {
+        margin: 0.25rem 0;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .f-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ---------- Responsive Styles ---------- */
+@media (max-width: 992px) {
+    .listing-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-img-top {
+        height: 16rem;
+    }
+
+    .card-body {
+        padding: 0.8rem;
+    }
+
+    .nav-link1 {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+
+    .f-info {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .row-cols-lg-3 {
+        grid-template-columns: 1fr !important;
+    }
+
+    .navbar {
+        height: auto;
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-link1 {
+        width: 100%;
+        margin: 0.5rem 0;
+        justify-content: center;
+    }
+
+    .card-img-top {
+        height: 14rem;
+    }
+
+    .f-info {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .f-info-links,
+    .f-info-socials,
+    .f-info-brand {
+        flex-direction: column;
+    }
+
+    .tax-toggle {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-body {
+        padding: 0.6rem;
+    }
+
+    .card-text b {
+        font-size: 1rem;
+    }
+
+    .tax-info {
+        display: none !important;
+    }
+
+    .add-btn,
+    .edit-btn {
+        width: 100%;
+        padding: 0.6rem;
+        font-size: 1rem;
+    }
+
+    .show-img {
+        height: 25vh;
+    }
+
+    #map {
+        height: 300px;
+        width: 100%;
+    }
+}
+
