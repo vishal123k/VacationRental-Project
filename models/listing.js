@@ -15,31 +15,32 @@ const listingSchema = new Schema({
   price: Number,
   location: String,
   country: String,
-  review:[{
-    type:Schema.Types.ObjectId,
-    ref:"Review",
+  review: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
-],
-owner:{
-  type:Schema.Types.ObjectId,
-  ref:"User",
-},
-geometry:{
+  geometry: {
     type: {
-      type: String, // Don't do `{ location: { type: String } }`
-      enum: ['Point'], // 'location.type' must be 'Point'
-      required: false
+      type: String, 
+      enum: ["Point"], 
+      required: false,
     },
     coordinates: {
       type: [Number],
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 });
 
-listingSchema.post("findOneAndDelete",async(Listing)=>{
-  if(Listing){
-    await review.deleteMany({_id: {$in: Listing.review}});
+listingSchema.post("findOneAndDelete", async (Listing) => {
+  if (Listing) {
+    await review.deleteMany({ _id: { $in: Listing.review } });
   }
 });
 

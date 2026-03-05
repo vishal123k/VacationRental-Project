@@ -93,6 +93,25 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/review", reviewRouter);
 app.use("/", userRouter);
 
+app.get("/search", async (req, res) => {
+  try {
+    const searchQuery = req.query.query;
+
+    const allListings = await Listing.find({
+      $or: [
+        { title: { $regex: searchQuery, $options: "i" } },
+        { location: { $regex: searchQuery, $options: "i" } },
+        { country: { $regex: searchQuery, $options: "i" } },
+      ],
+    });
+
+    res.render("listings/index", { allListings });
+  } catch (err) {
+    console.log(err);
+    res.send("Search error");
+  }
+});
+
 // 404 handler
 app.all("*", (req, res, next) => {
   next(new expressError(404, "Page Not Found"));
